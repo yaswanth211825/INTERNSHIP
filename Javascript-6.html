@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function showDate(){
+            const date = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('dateDisplay').innerText = date.toLocaleDateString('en-GB', options).replace(' ', '/');
+        }
+        function showTime(){
+            const date=new Date();
+            const options={ timeZoneName: 'short' };
+            document.getElementById('timeDisplay').innerText = date.toLocaleString('en-GB', options);
+        }
+    </script>
+    <button onclick="showDate()">show date</button>
+    <div id="dateDisplay">7/March/2023</div>
+    <button onclick="showTime()">show Time</button>
+    <div id="timeDisplay">Tue Mar 07 2023 23:24:26 GMT+0530(India Standard Time)</div>
+</body>
+</html>

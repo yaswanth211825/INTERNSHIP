@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gnani</title>
+</head>
+<body>
+    <script>
+    function gnani(a) {
+        let c = 0;
+        while (a > 0) {
+            let r = a % 10;
+            c = c * 10 + r;
+            a = Math.floor(a / 10);
+        }
+
+        document.write("<h2>Sample Number: 32243</h2>");
+        document.write("<h2>Reversed Number: " + c + "</h2>");
+    }
+
+    gnani(32243);
+    </script>
+</body>
+</html>

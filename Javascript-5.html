@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation with Feedback</title>
+    <style>
+        .error {
+            color: red;
+            margin-left: 10px; /* Space between input and error message */
+            white-space: nowrap; /* Prevents line breaks within error messages */
+        }
+
+        input:invalid, textarea:invalid {
+            border: 2px solid red;
+        }
+
+        input:invalid + .error, textarea:invalid + .error {
+            display: inline;
+        }
+
+        .error {
+            display: none;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; 
+        }
+
+        .form-group label {
+            flex: 0 0 100px; 
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-group input, .form-group textarea {
+            flex: 1; 
+            padding: 5px;
+        }
+
+        .form-group .error {
+            flex: 0 0 auto;
+        }
+
+        textarea#message {
+            height: 50px; 
+            resize: none; 
+        }
+
+        form {
+            max-width: 600px; 
+            margin: auto;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); 
+            const formElements = document.querySelectorAll('input, textarea');
+            formElements.forEach((element) => {
+                const errorElement = document.getElementById(element.name + 'Error');
+                if (!element.checkValidity()) {
+                    errorElement.style.display = 'inline';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <center>
+    <form onsubmit="validateForm(event)">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span id="nameError" class="error">This field is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error">A valid email address is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="website">Website:</label>
+            <input type="url" id="website" name="website" required>
+            <span id="websiteError" class="error">A valid URL is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <span id="messageError" class="error">This field is required</span>
+        </div>
+
+        <div class="g">
+            <button>Submit</button>
+        </div>
+    </form>
+    </center>
+</body>
+</html>
